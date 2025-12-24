@@ -1,0 +1,83 @@
+# Feature Definitions
+# ====================
+# Schema definitions for all features used in the system
+
+# Dataset Columns
+dataset_columns:
+  product_id: string
+  category: string
+  name: string
+  count_sold: int
+  discounted_price: float
+  preorder: bool
+  price: float
+  stock: int
+  gold_merchant: bool
+  is_official: bool
+  is_topads: bool
+  rating_average: float
+  shop_id: string
+  shop_location: string
+  warehouse_id: string
+  product_url: string
+  review_id: string
+  variant_name: string
+  message: string
+  review_rating: int
+  review_time: string
+  review_timestamp: int
+  review_response: string
+  review_like: int
+  bad_rating_reason: string
+
+# Sales Prediction Features
+sales_model_features:
+  product:
+    - price
+    - discounted_price
+    - discount_ratio # derived: (price - discounted_price) / price
+    - stock
+    - preorder
+
+  shop:
+    - gold_merchant
+    - is_official
+    - is_topads
+    - shop_location_encoded
+
+  review:
+    - rating_average
+    - review_count
+    - positive_review_ratio
+
+  temporal:
+    - day_of_week
+    - month
+    - is_weekend
+
+# Review Risk Prediction Features
+risk_model_features:
+  product:
+    - price
+    - category_encoded
+    - discount_ratio
+
+  shop:
+    - gold_merchant
+    - is_official
+    - shop_quality_score
+
+  review_history:
+    - avg_past_rating
+    - negative_review_count
+    - review_velocity
+
+  text:
+    - message_embedding # BERT/sentence-transformers
+    - message_length
+    - has_response
+
+# Target Variables
+targets:
+  sales_prediction: count_sold
+  review_risk: is_negative_review # derived: review_rating < 3

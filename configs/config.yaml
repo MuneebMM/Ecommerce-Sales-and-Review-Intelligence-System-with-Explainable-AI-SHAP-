@@ -1,0 +1,44 @@
+# Review Intelligence System Configuration
+# ==========================================
+
+# Environment
+environment: development
+
+# Data Settings
+data:
+  raw_path: data/raw
+  processed_path: data/processed
+  features_path: data/features
+  dataset_file: tokopedia_products_with_review.csv
+
+# Feature Store Settings
+feature_store:
+  offline_store: parquet
+  online_store: redis
+  cache_ttl: 3600
+
+# Model Settings
+models:
+  sales_predictor:
+    algorithm: lightgbm
+    model_path: models/sales_predictor
+  review_risk_predictor:
+    algorithm: lightgbm
+    model_path: models/review_risk_predictor
+
+# API Settings
+api:
+  host: 0.0.0.0
+  port: 8000
+  workers: 4
+
+# Monitoring Settings
+monitoring:
+  drift_threshold_psi: 0.25
+  drift_threshold_kl: 0.1
+  performance_degradation_threshold: 0.15
+
+# Logging Settings
+logging:
+  level: INFO
+  format: json

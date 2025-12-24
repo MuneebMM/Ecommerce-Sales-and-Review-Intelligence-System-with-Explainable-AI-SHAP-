@@ -1,0 +1,82 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Environment files
+.env
+.env.local
+*.local
+
+# Data files (keep in .gitkeep)
+*.csv
+data/raw/*.csv
+data/processed/*.parquet
+data/features/*.parquet
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/features/.gitkeep
+
+# Model artifacts
+*.pkl
+models/*.json
+models/sales_predictor/*.pkl
+models/sales_predictor/*.joblib
+models/review_risk_predictor/*.pkl
+models/review_risk_predictor/*.joblib
+!models/sales_predictor/.gitkeep
+!models/review_risk_predictor/.gitkeep
+
+# Logs
+logs/*.log
+logs/*.json
+
+# MLflow artifacts
+mlruns/
+mlartifacts/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+
+# OS files
+.DS_Store
+Thumbs.db

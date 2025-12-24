@@ -1,0 +1,71 @@
+# Model Configuration
+# ====================
+# Hyperparameters and training settings for ML models
+
+# Sales Volume Prediction Model (Regression)
+sales_predictor:
+  algorithm: lightgbm
+
+  hyperparameters:
+    objective: regression
+    metric: mae
+    n_estimators: 1000
+    max_depth: 8
+    learning_rate: 0.05
+    num_leaves: 31
+    min_child_samples: 20
+    subsample: 0.8
+    colsample_bytree: 0.8
+    reg_alpha: 0.1
+    reg_lambda: 0.1
+
+  training:
+    test_size: 0.2
+    val_size: 0.1
+    cv_folds: 5
+    early_stopping_rounds: 50
+    random_state: 42
+
+  evaluation_metrics:
+    - mae
+    - mape
+    - rmse
+    - r2
+
+# Review Risk Prediction Model (Classification)
+review_risk_predictor:
+  algorithm: lightgbm
+
+  hyperparameters:
+    objective: binary
+    metric: auc
+    n_estimators: 1000
+    max_depth: 6
+    learning_rate: 0.03
+    num_leaves: 31
+    min_child_samples: 20
+    subsample: 0.8
+    colsample_bytree: 0.8
+    scale_pos_weight: auto # handle class imbalance
+
+  training:
+    test_size: 0.2
+    val_size: 0.1
+    cv_folds: 5
+    early_stopping_rounds: 50
+    random_state: 42
+
+  evaluation_metrics:
+    - auc_roc
+    - precision
+    - recall
+    - f1
+    - brier_score
+
+# SHAP Explainability Settings
+explainability:
+  method: tree_shap
+  background_samples: 100
+  max_display_features: 10
+  cache_enabled: true
+  cache_ttl: 3600
